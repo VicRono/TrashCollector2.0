@@ -15,5 +15,6 @@ namespace TrashCollector2._0.Models
         [ForeignKey("Address")]
         public int CustomerAddressId { get; set; }
         public Address Address { get; set; }
+        public string AspUserId { get; set; }
     }
 }

@@ -20,10 +20,10 @@ namespace TrashCollector2._0
             ApplicationDbContext _context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_context));
-            if (!roleManager.RoleExists("Admin"))
+            if (!roleManager.RoleExists("Customer"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Admin";
+                role.Name = "Customer";
                 roleManager.Create(role);
             }
             if (!roleManager.RoleExists("Collector"))

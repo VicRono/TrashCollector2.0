@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerAccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +210,10 @@
     <Compile Include="Migrations\201902061646133_user-roles.Designer.cs">
       <DependentUpon>201902061646133_user-roles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902062031292_customer-AcctUpdated.cs" />
+    <Compile Include="Migrations\201902062031292_customer-AcctUpdated.Designer.cs">
+      <DependentUpon>201902062031292_customer-AcctUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -218,6 +223,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PickupDay.cs" />
     <Compile Include="Models\AccountBalance.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -281,6 +287,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\CustomerAccounts\Create.cshtml" />
+    <Content Include="Views\CustomerAccounts\Delete.cshtml" />
+    <Content Include="Views\CustomerAccounts\Details.cshtml" />
+    <Content Include="Views\CustomerAccounts\Edit.cshtml" />
+    <Content Include="Views\CustomerAccounts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902061646133_user-roles.resx">
       <DependentUpon>201902061646133_user-roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902062031292_customer-AcctUpdated.resx">
+      <DependentUpon>201902062031292_customer-AcctUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
