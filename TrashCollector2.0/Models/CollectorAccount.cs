@@ -14,7 +14,7 @@ namespace TrashCollector2._0.Models
         public string CollectorName { get; set; }
 
         [ForeignKey("Address")]
-        public int AddressId { get; set; }
+        public int CollectorAddressId { get; set; }
         public Address Address { get; set; }
 
         public int TotalPickups { get; set; }

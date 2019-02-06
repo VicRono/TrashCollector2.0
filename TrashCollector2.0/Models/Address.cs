@@ -14,9 +14,7 @@ namespace TrashCollector2._0.Models
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public string ZipCode { get; set; }
-        [ForeignKey("CustomerAccount")]
-        public int CustomerAccountId { get; set; }
-        public CustomerAccount CustomerAccount { get; set; }
+        public int ZipCode { get; set; }
+      
     }
 }

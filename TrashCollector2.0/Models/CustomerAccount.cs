@@ -12,11 +12,8 @@ namespace TrashCollector2._0.Models
         [Key]
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public string ApplicationUserId { get; set; }
-        [ForeignKey("PickupDay")]
-        [Display(Name ="PickUp Day")]
-        public int PickupDayId { get; set; }
-        public PickupDay PickupDay{ get; set; }
-
+        [ForeignKey("Address")]
+        public int CustomerAddressId { get; set; }
+        public Address Address { get; set; }
     }
 }

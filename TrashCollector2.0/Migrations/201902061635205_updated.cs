@@ -3,23 +3,21 @@ namespace TrashCollector2._0.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class updated : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.CollectorAccounts",
+                "dbo.AccountBalances",
                 c => new
                     {
-                        EmployeeId = c.String(nullable: false, maxLength: 128),
-                        EmployeeName = c.String(),
-                        ZipCode = c.String(),
-                        TotalPickups = c.Int(nullable: false),
-                        MyPickups = c.Int(nullable: false),
-                        Pickupcompleted = c.String(),
-                        ApplicationUserId = c.String(),
+                        AccountId = c.Int(nullable: false, identity: true),
+                        CustomerId = c.Int(nullable: false),
+                        TotalBalance = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => t.EmployeeId);
+                .PrimaryKey(t => t.AccountId)
+                .ForeignKey("dbo.CustomerAccounts", t => t.CustomerId, cascadeDelete: true)
+                .Index(t => t.CustomerId);
             
             CreateTable(
                 "dbo.CustomerAccounts",
@@ -27,18 +25,38 @@ namespace TrashCollector2._0.Migrations
                     {
                         CustomerId = c.Int(nullable: false, identity: true),
                         CustomerName = c.String(),
-                        CustomerAddress = c.String(),
+                        CustomerAddressId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.CustomerId)
+                .ForeignKey("dbo.Addresses", t => t.CustomerAddressId, cascadeDelete: true)
+                .Index(t => t.CustomerAddressId);
+            
+            CreateTable(
+                "dbo.Addresses",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        StreetAddress = c.String(),
                         City = c.String(),
                         State = c.String(),
-                        ZipCode = c.String(),
-                        ApplicationUserId = c.String(),
-                        Day = c.Int(nullable: false),
-                        OneTimePickup = c.Int(nullable: false),
-                        StartDay = c.Int(nullable: false),
-                        EndDay = c.Int(nullable: false),
-                        ExtraPickUpDay = c.Int(),
+                        ZipCode = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.CustomerId);
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.CollectorAccounts",
+                c => new
+                    {
+                        CollectorId = c.Int(nullable: false, identity: true),
+                        CollectorName = c.String(),
+                        CollectorAddressId = c.Int(nullable: false),
+                        TotalPickups = c.Int(nullable: false),
+                        MyPickups = c.Int(nullable: false),
+                        Pickupcompleted = c.String(),
+                    })
+                .PrimaryKey(t => t.CollectorId)
+                .ForeignKey("dbo.Addresses", t => t.CollectorAddressId, cascadeDelete: true)
+                .Index(t => t.CollectorAddressId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -62,17 +80,6 @@ namespace TrashCollector2._0.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.TotalBalances",
-                c => new
-                    {
-                        accountId = c.Int(nullable: false, identity: true),
-                        customerId = c.Int(nullable: false),
-                        collectorId = c.Int(nullable: false),
-                        totalBalance = c.Double(nullable: false),
-                    })
-                .PrimaryKey(t => t.accountId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -127,20 +134,27 @@ namespace TrashCollector2._0.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.CollectorAccounts", "CollectorAddressId", "dbo.Addresses");
+            DropForeignKey("dbo.AccountBalances", "CustomerId", "dbo.CustomerAccounts");
+            DropForeignKey("dbo.CustomerAccounts", "CustomerAddressId", "dbo.Addresses");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.CollectorAccounts", new[] { "CollectorAddressId" });
+            DropIndex("dbo.CustomerAccounts", new[] { "CustomerAddressId" });
+            DropIndex("dbo.AccountBalances", new[] { "CustomerId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.TotalBalances");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.CustomerAccounts");
             DropTable("dbo.CollectorAccounts");
+            DropTable("dbo.Addresses");
+            DropTable("dbo.CustomerAccounts");
+            DropTable("dbo.AccountBalances");
         }
     }
 }

@@ -14,10 +14,6 @@ namespace TrashCollector2._0.Models
         [ForeignKey("CustomerAccount")]
         public int CustomerId { get; set; }
         public CustomerAccount CustomerAccount { get; set; }
-
-        [ForeignKey("CollectorAccount")]
-        public int CollectorId { get; set; }
-        public CollectorAccount CollectorAccount { get; set; }
         public double TotalBalance { get; set; }
     }
 }

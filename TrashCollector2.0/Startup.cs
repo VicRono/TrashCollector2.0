@@ -20,20 +20,17 @@ namespace TrashCollector2._0
             ApplicationDbContext _context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_context));
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
-
             if (!roleManager.RoleExists("Admin"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
-
-                var user = new ApplicationUser();
-                user.UserName = "Victor";
-                string userPSSWD = "Kenya92";
-
-                var CheckUser = userManager.Create(user, userPSSWD);
-
+            }
+            if (!roleManager.RoleExists("Collector"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Collector";
+                roleManager.Create(role);
             }
         }
     }
