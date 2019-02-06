@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201902061635205_updated.Designer.cs">
       <DependentUpon>201902061635205_updated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902061646133_user-roles.cs" />
+    <Compile Include="Migrations\201902061646133_user-roles.Designer.cs">
+      <DependentUpon>201902061646133_user-roles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -292,6 +296,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902061635205_updated.resx">
       <DependentUpon>201902061635205_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902061646133_user-roles.resx">
+      <DependentUpon>201902061646133_user-roles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
