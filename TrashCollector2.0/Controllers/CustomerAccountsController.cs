@@ -82,16 +82,11 @@ namespace TrashCollector2._0.Controllers
         // GET: CustomerAccounts/Edit/5
         public ActionResult ManagePickupDays()
         {
+
             var pickupDay = new PickupDay();
-            
+
             return View(pickupDay);
 
-            //CustomerAccount customerAccount = db.CustomerAccount.Find(id);
-            //if (customerAccount == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
         }
 
         // POST: CustomerAccounts/Edit/5
@@ -101,7 +96,16 @@ namespace TrashCollector2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ManagePickupDays(PickupDay PickupDay)
         {
-            
+            var customer = db.CustomerAccount.Where(c => c.AspUserId == User.Identity.GetUserId()).Single();
+            var pickup = db.PickupDay.Where(e => e.CustomerID == customer.CustomerId).Single();
+
+            pickup.PickUpDay = PickupDay.PickUpDay;
+            pickup.SuspendedStartDay = PickupDay.SuspendedStartDay;
+            pickup.SuspendedEndDate = PickupDay.SuspendedEndDate;
+            db.SaveChanges();
+
+
+
             //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
             return View();
         }

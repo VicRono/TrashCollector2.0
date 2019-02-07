@@ -202,25 +202,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902061635205_updated.cs" />
-    <Compile Include="Migrations\201902061635205_updated.Designer.cs">
-      <DependentUpon>201902061635205_updated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902061646133_user-roles.cs" />
-    <Compile Include="Migrations\201902061646133_user-roles.Designer.cs">
-      <DependentUpon>201902061646133_user-roles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902062031292_customer-AcctUpdated.cs" />
-    <Compile Include="Migrations\201902062031292_customer-AcctUpdated.Designer.cs">
-      <DependentUpon>201902062031292_customer-AcctUpdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902062122391_zipcode changed.cs" />
-    <Compile Include="Migrations\201902062122391_zipcode changed.Designer.cs">
-      <DependentUpon>201902062122391_zipcode changed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902062240189_zipcode changed1.cs" />
-    <Compile Include="Migrations\201902062240189_zipcode changed1.Designer.cs">
-      <DependentUpon>201902062240189_zipcode changed1.cs</DependentUpon>
+    <Compile Include="Migrations\201902072115360_initial.cs" />
+    <Compile Include="Migrations\201902072115360_initial.Designer.cs">
+      <DependentUpon>201902072115360_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,20 +298,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902061635205_updated.resx">
-      <DependentUpon>201902061635205_updated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902061646133_user-roles.resx">
-      <DependentUpon>201902061646133_user-roles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902062031292_customer-AcctUpdated.resx">
-      <DependentUpon>201902062031292_customer-AcctUpdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902062122391_zipcode changed.resx">
-      <DependentUpon>201902062122391_zipcode changed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902062240189_zipcode changed1.resx">
-      <DependentUpon>201902062240189_zipcode changed1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902072115360_initial.resx">
+      <DependentUpon>201902072115360_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

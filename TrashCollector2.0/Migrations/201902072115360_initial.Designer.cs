@@ -7,13 +7,13 @@ namespace TrashCollector2._0.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class zipcodechanged : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(zipcodechanged));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902062122391_zipcode changed"; }
+            get { return "201902072115360_initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,7 +3,7 @@ namespace TrashCollector2._0.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class updated : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -26,6 +26,7 @@ namespace TrashCollector2._0.Migrations
                         CustomerId = c.Int(nullable: false, identity: true),
                         CustomerName = c.String(),
                         CustomerAddressId = c.Int(nullable: false),
+                        AspUserId = c.String(),
                     })
                 .PrimaryKey(t => t.CustomerId)
                 .ForeignKey("dbo.Addresses", t => t.CustomerAddressId, cascadeDelete: true)
@@ -39,7 +40,7 @@ namespace TrashCollector2._0.Migrations
                         StreetAddress = c.String(),
                         City = c.String(),
                         State = c.String(),
-                        ZipCode = c.Int(nullable: false),
+                        ZipCode = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -57,6 +58,23 @@ namespace TrashCollector2._0.Migrations
                 .PrimaryKey(t => t.CollectorId)
                 .ForeignKey("dbo.Addresses", t => t.CollectorAddressId, cascadeDelete: true)
                 .Index(t => t.CollectorAddressId);
+            
+            CreateTable(
+                "dbo.PickupDays",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PickUpDay = c.String(),
+                        SuspendedStartDay = c.String(),
+                        SuspendedEndDate = c.String(),
+                        CustomerID = c.Int(nullable: false),
+                        CollectorId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.CollectorAccounts", t => t.CollectorId, cascadeDelete: true)
+                .ForeignKey("dbo.CustomerAccounts", t => t.CustomerID, cascadeDelete: false)
+                .Index(t => t.CustomerID)
+                .Index(t => t.CollectorId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -86,6 +104,7 @@ namespace TrashCollector2._0.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        UserRole = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -134,6 +153,8 @@ namespace TrashCollector2._0.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.PickupDays", "CustomerID", "dbo.CustomerAccounts");
+            DropForeignKey("dbo.PickupDays", "CollectorId", "dbo.CollectorAccounts");
             DropForeignKey("dbo.CollectorAccounts", "CollectorAddressId", "dbo.Addresses");
             DropForeignKey("dbo.AccountBalances", "CustomerId", "dbo.CustomerAccounts");
             DropForeignKey("dbo.CustomerAccounts", "CustomerAddressId", "dbo.Addresses");
@@ -143,6 +164,8 @@ namespace TrashCollector2._0.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.PickupDays", new[] { "CollectorId" });
+            DropIndex("dbo.PickupDays", new[] { "CustomerID" });
             DropIndex("dbo.CollectorAccounts", new[] { "CollectorAddressId" });
             DropIndex("dbo.CustomerAccounts", new[] { "CustomerAddressId" });
             DropIndex("dbo.AccountBalances", new[] { "CustomerId" });
@@ -151,6 +174,7 @@ namespace TrashCollector2._0.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.PickupDays");
             DropTable("dbo.CollectorAccounts");
             DropTable("dbo.Addresses");
             DropTable("dbo.CustomerAccounts");
