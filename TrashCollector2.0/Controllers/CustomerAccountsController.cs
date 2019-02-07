@@ -17,9 +17,15 @@ namespace TrashCollector2._0.Controllers
 
         // GET: CustomerAccounts
         public ActionResult Index()
-        {
-            var customerAccount = db.CustomerAccount.Include(c => c.Address);
-            return View(customerAccount.ToList());
+        { 
+            ViewModel viewModel = new ViewModel()
+            {
+                CustomerList = new List<CustomerAccount>(),
+                AddressList = new List<Address>()
+            };
+            viewModel.CustomerList = db.CustomerAccount.ToList();
+            viewModel.AddressList = db.Addresses.ToList();
+            return View(viewModel);
         }
 
         // GET: CustomerAccounts/Details/5
@@ -43,7 +49,8 @@ namespace TrashCollector2._0.Controllers
             ViewModel Viewmodel = new ViewModel()
             {
                 CustomerAccount = new CustomerAccount(),
-                Address = new Address()
+                Address = new Address(),
+               
                 
             };
             return View(Viewmodel);
@@ -56,15 +63,17 @@ namespace TrashCollector2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
-                var AspUserID = User.Identity.GetUserId();
-                viewModel.CustomerAccount.AspUserId = AspUserID;
-                db.CustomerAccount.Add(viewModel.CustomerAccount);
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            db.Addresses.Add(viewModel.Address);
+            db.SaveChanges();
+
+            viewModel.CustomerAccount.CustomerAddressId = viewModel.Address.Id;
+            viewModel.CustomerAccount.AspUserId = User.Identity.GetUserId();
+
+            db.CustomerAccount.Add(viewModel.CustomerAccount);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
 
             ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", viewModel.CustomerAccount.CustomerAddressId);
             return View(viewModel.CustomerAccount);

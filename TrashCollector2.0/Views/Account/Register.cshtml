@@ -36,10 +36,11 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.UserRole, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.UserRoles, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.RadioButtonFor(m => m.UserRole, "Admin", new { @class = "radio-inline"})@Html.Label("Admin")
-            @Html.RadioButtonFor(m => m.UserRole, "Ccollector", new { @class = "radio-inline" })@Html.Label("Collector")
+            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
+            @*@Html.RadioButtonFor(m => m.UserRole, "Customer", new { @class = "radio-inline"})@Html.Label("Customer")
+            @Html.RadioButtonFor(m => m.UserRole, "Collector", new { @class = "radio-inline" })@Html.Label("Collector")*@
 
         </div>
     </div>

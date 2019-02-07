@@ -2,12 +2,13 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Web.Mvc;
 using TrashCollector2._0.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollector2._0.Startup))]
 namespace TrashCollector2._0
 {
-    public partial class Startup
+    public partial class Startup : Controller
     {
         public void Configuration(IAppBuilder app)
         {
@@ -20,6 +21,8 @@ namespace TrashCollector2._0
             ApplicationDbContext _context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+   
             if (!roleManager.RoleExists("Customer"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();

@@ -66,7 +66,7 @@ namespace TrashCollector2._0.Models
     {
         [Required]
         [Display(Name = "User Role")]
-        public string UserRole { get; set; }
+        public string UserRoles { get; set; }
 
         [Required]
         [EmailAddress]

@@ -214,6 +214,14 @@
     <Compile Include="Migrations\201902062031292_customer-AcctUpdated.Designer.cs">
       <DependentUpon>201902062031292_customer-AcctUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902062122391_zipcode changed.cs" />
+    <Compile Include="Migrations\201902062122391_zipcode changed.Designer.cs">
+      <DependentUpon>201902062122391_zipcode changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902062240189_zipcode changed1.cs" />
+    <Compile Include="Migrations\201902062240189_zipcode changed1.Designer.cs">
+      <DependentUpon>201902062240189_zipcode changed1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -313,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902062031292_customer-AcctUpdated.resx">
       <DependentUpon>201902062031292_customer-AcctUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902062122391_zipcode changed.resx">
+      <DependentUpon>201902062122391_zipcode changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902062240189_zipcode changed1.resx">
+      <DependentUpon>201902062240189_zipcode changed1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
