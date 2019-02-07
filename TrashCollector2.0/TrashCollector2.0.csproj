@@ -300,6 +300,7 @@
     <Content Include="Views\CustomerAccounts\Details.cshtml" />
     <Content Include="Views\CustomerAccounts\Edit.cshtml" />
     <Content Include="Views\CustomerAccounts\Index.cshtml" />
+    <Content Include="Views\CustomerAccounts\ManagePickupDays.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

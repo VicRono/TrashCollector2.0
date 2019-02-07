@@ -80,19 +80,18 @@ namespace TrashCollector2._0.Controllers
         }
 
         // GET: CustomerAccounts/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult ManagePickupDays()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerAccount customerAccount = db.CustomerAccount.Find(id);
-            if (customerAccount == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
-            return View(customerAccount);
+            var pickupDay = new PickupDay();
+            
+            return View(pickupDay);
+
+            //CustomerAccount customerAccount = db.CustomerAccount.Find(id);
+            //if (customerAccount == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
         }
 
         // POST: CustomerAccounts/Edit/5
@@ -100,16 +99,11 @@ namespace TrashCollector2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,CustomerAddressId")] CustomerAccount customerAccount)
+        public ActionResult ManagePickupDays(PickupDay PickupDay)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(customerAccount).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
-            return View(customerAccount);
+            
+            //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
+            return View();
         }
 
         // GET: CustomerAccounts/Delete/5

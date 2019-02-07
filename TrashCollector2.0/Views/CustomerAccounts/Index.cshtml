@@ -17,6 +17,12 @@
         <th>
             @Html.DisplayNameFor(model => model.CustomerAccount.CustomerName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.ZipCode)
+        </th>
         <th></th>
     </tr>
 
@@ -35,9 +41,8 @@
             @Html.DisplayFor(modelItem => item.Address.ZipCode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId })
+            @Html.ActionLink("ManagePickupDays", "ManagePickupDays", "CustomerAccounts", new { id = item.CustomerId }) |
+            @Html.ActionLink("AccountDetails", "Details", new { id=item.CustomerId }) |
         </td>
     </tr>
 }
