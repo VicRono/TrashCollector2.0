@@ -34,7 +34,7 @@ namespace TrashCollector2._0.Models
         public DbSet<CollectorAccount> CollectorAccount { get; set; }
         public DbSet<AccountBalance> AccountBalance { get; set; }
         public DbSet<PickupDay> PickupDay { get; set; }
-
+  
         public System.Data.Entity.DbSet<TrashCollector2._0.Models.Address> Addresses { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace TrashCollector2._0.Models
         public DateTime PickUpDay { get; set; }
         public DateTime SuspendedStartDay { get; set; }
         public DateTime SuspendedEndDate { get; set; }
+        public DateTime ExtraPickUp { get; set; }
+
         [ForeignKey("CustomerAccount")]
         public int CustomerID { get; set; }
         public CustomerAccount  CustomerAccount { get; set; }

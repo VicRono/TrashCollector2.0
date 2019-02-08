@@ -17,15 +17,18 @@ namespace TrashCollector2._0.Controllers
 
         // GET: CustomerAccounts
         public ActionResult Index()
-        { 
-            ViewModel viewModel = new ViewModel()
-            {
-                CustomerList = new List<CustomerAccount>(),
-                AddressList = new List<Address>()
-            };
-            viewModel.CustomerList = db.CustomerAccount.ToList();
-            viewModel.AddressList = db.Addresses.ToList();
-            return View(viewModel);
+        {
+            var aspUserId = User.Identity.GetUserId();
+            var customer = db.CustomerAccount.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
+            customer.Address = db.Addresses.Where(c => c.Id == customer.CustomerAddressId).SingleOrDefault();
+            //ViewModel viewModel = new ViewModel()
+            //{
+            //    CustomerList = new List<CustomerAccount>(),
+            //    AddressList = new List<Address>()
+            //};
+            //viewModel.CustomerList = db.CustomerAccount.ToList();
+            //viewModel.AddressList = db.Addresses.ToList();
+            return View(customer);
         }
 
         // GET: CustomerAccounts/Details/5
@@ -102,14 +105,11 @@ namespace TrashCollector2._0.Controllers
             pickup.PickUpDay = PickupDay.PickUpDay;
             pickup.SuspendedStartDay = PickupDay.SuspendedStartDay;
             pickup.SuspendedEndDate = PickupDay.SuspendedEndDate;
+            pickup.ExtraPickUp = PickupDay.ExtraPickUp;
             db.SaveChanges();
-
-
-
-            //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", customerAccount.CustomerAddressId);
-            return View();
+            return View(PickupDay);
         }
-
+        
         // GET: CustomerAccounts/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -1,4 +1,4 @@
-﻿@model TrashCollector2._0.Models.ViewModel
+﻿@model TrashCollector2._0.Models.CustomerAccount
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Address.StreetAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerAccount.CustomerName)
+            @Html.DisplayNameFor(model => model.CustomerName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address.State)
@@ -26,25 +26,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.CustomerList) {
+
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Address.StreetAddress)
+            @Html.DisplayFor(model => model.Address.StreetAddress)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address.City)
+            @Html.DisplayFor(model => model.Address.City)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address.State)
+            @Html.DisplayFor(model => model.Address.State)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address.ZipCode)
+            @Html.DisplayFor(model => model.Address.ZipCode)
         </td>
         <td>
-            @Html.ActionLink("ManagePickupDays", "ManagePickupDays", "CustomerAccounts", new { id = item.CustomerId }) |
-            @Html.ActionLink("AccountDetails", "Details", new { id=item.CustomerId }) |
+            @*@Html.ActionLink("ManagePickupDays", "ManagePickupDays", "CustomerAccounts", new { id = item.CustomerId }) |
+            @Html.ActionLink("AccountDetails", "Details", new { id=item.CustomerId }) |*@
         </td>
     </tr>
-}
+
 
 </table>
