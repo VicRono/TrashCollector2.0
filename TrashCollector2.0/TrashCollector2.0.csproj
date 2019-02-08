@@ -219,6 +219,14 @@
     <Compile Include="Migrations\201902081656330_deleted extra-pickup.Designer.cs">
       <DependentUpon>201902081656330_deleted extra-pickup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902081813356_prop-change.cs" />
+    <Compile Include="Migrations\201902081813356_prop-change.Designer.cs">
+      <DependentUpon>201902081813356_prop-change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902081914429_column-added-collector.cs" />
+    <Compile Include="Migrations\201902081914429_column-added-collector.Designer.cs">
+      <DependentUpon>201902081914429_column-added-collector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -298,10 +306,10 @@
     <Content Include="Views\CustomerAccounts\Index.cshtml" />
     <Content Include="Views\Collector\Index.cshtml" />
     <Content Include="Views\CustomerAccounts\ManagePickup.cshtml" />
+    <Content Include="Views\Collector\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CollectorAccounts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -323,6 +331,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902081656330_deleted extra-pickup.resx">
       <DependentUpon>201902081656330_deleted extra-pickup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902081813356_prop-change.resx">
+      <DependentUpon>201902081813356_prop-change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902081914429_column-added-collector.resx">
+      <DependentUpon>201902081914429_column-added-collector.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

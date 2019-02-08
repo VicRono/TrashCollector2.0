@@ -76,30 +76,59 @@ namespace TrashCollector2._0.Controllers
             db.CustomerAccount.Add(viewModel.CustomerAccount);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
-
-            ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", viewModel.CustomerAccount.CustomerAddressId);
             return View(viewModel.CustomerAccount);
+
+            //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", viewModel.CustomerAccount.CustomerAddressId);
+            //return View(viewModel.CustomerAccount);
         }
 
         // GET: CustomerAccounts/Edit/5
-        public ActionResult ManagePickupDays()
+        public ActionResult ManagePickup()
         {
+            try {
+                var userLoggedIn = User.Identity.GetUserId();
+                var customer = db.CustomerAccount.Where(c => c.AspUserId == userLoggedIn).Single();
+                if (customer == null)
+                {
+                    return View();
+                }
+                var pickup = db.PickupDay.Where(e => e.CustomerID == customer.CustomerId).Single();
 
-            var pickupDay = new PickupDay();
+                if (pickup == null)
+                {
+                    return View();
+                }
+                return View(pickup);
+            }
+            catch
+            {
+                return View();
+            }
+            //var userLoggedIn = User.Identity.GetUserId();
+            //var customer = db.CustomerAccount.Where(c => c.AspUserId == userLoggedIn).Single();
+            //if (customer == null)
+            //{
+            //    return View();
+            //}
+            //var pickup = db.PickupDay.Where(e => e.CustomerID == customer.CustomerId).Single();
 
-            return View(pickupDay);
+            //if(pickup == null)
+            //{
+            //    return View();
+            //}
+            //return View(pickup);
 
         }
-
+        
         // POST: CustomerAccounts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ManagePickupDays(PickupDay PickupDay)
+        public ActionResult ManagePickup(PickupDay PickupDay)
         {
-            var customer = db.CustomerAccount.Where(c => c.AspUserId == User.Identity.GetUserId()).Single();
+            var userLoggedIn = User.Identity.GetUserId();
+            var customer = db.CustomerAccount.Where(c => c.AspUserId == userLoggedIn).Single();
             var pickup = db.PickupDay.Where(e => e.CustomerID == customer.CustomerId).Single();
 
             pickup.PickUpDay = PickupDay.PickUpDay;

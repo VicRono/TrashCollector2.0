@@ -161,11 +161,11 @@ namespace TrashCollector2._0.Controllers
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     if(user.UserRole == "Customer")
                     {
-                      return  RedirectToAction("Create", "CustomerAccounts");
+                      return  RedirectToAction("Create", "Customer");
                     }
                     if (user.UserRole == "Collector")
                     {
-                      return  RedirectToAction("Index", "CollectorAccounts");
+                      return  RedirectToAction("Create", "Collector");
                     }
 
                     //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

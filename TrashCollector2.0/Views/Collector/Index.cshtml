@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrashCollector2._0.Models.CustomerAccount>
+﻿@model TrashCollector2._0.Models.ViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -15,24 +15,18 @@
             @Html.DisplayNameFor(model => model.Address.StreetAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspUserId)
+            @Html.DisplayNameFor(model => model.CollectorAccount.CollectorName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.CustomerList) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Address.StreetAddress)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CustomerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspUserId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |

@@ -19,12 +19,13 @@ namespace TrashCollector2._0.Controllers
         {
             ViewModel viewModel = new ViewModel()
             {
-                CustomerAccount = new CustomerAccount(),
-                Address = new Address()
+               CustomerList = new List<CustomerAccount>(),
+               AddressList = new List<Address>()
             };
             viewModel.CustomerList = db.CustomerAccount.ToList();
             viewModel.AddressList = db.Addresses.ToList();
             return View(viewModel);
+
         }
 
         // GET: CollectorAccounts/Details/5
@@ -36,23 +37,30 @@ namespace TrashCollector2._0.Controllers
         // GET: CollectorAccounts/Create
         public ActionResult Create()
         {
-            return View();
+            ViewModel Viewmodel = new ViewModel()
+            {
+                CollectorAccount = new CollectorAccount(),
+                Address = new Address(),
+
+
+            };
+            return View(Viewmodel);
         }
 
         // POST: CollectorAccounts/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ViewModel ViewModel)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            db.Addresses.Add(ViewModel.Address);
+            db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewModel.CollectorAccount.CollectorAddressId = ViewModel.Address.Id;
+            ViewModel.CollectorAccount.AspUserId = User.Identity.GetUserId();
+
+            db.CollectorAccount.Add(ViewModel.CollectorAccount);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: CollectorAccounts/Edit/5

@@ -20,5 +20,7 @@ namespace TrashCollector2._0.Models
         public int TotalPickups { get; set; }
         public int MyPickups { get; set; }
         public string Pickupcompleted { get; set; }
+        public string AspUserId { get; set; }
+
     }
 }
