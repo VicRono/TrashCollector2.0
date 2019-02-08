@@ -77,7 +77,8 @@ namespace TrashCollector2._0.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            
             switch (result)
             {
                 case SignInStatus.Success:
@@ -161,7 +162,7 @@ namespace TrashCollector2._0.Controllers
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     if(user.UserRole == "Customer")
                     {
-                      return  RedirectToAction("Create", "Customer");
+                      return  RedirectToAction("Create", "CustomerAccounts");
                     }
                     if (user.UserRole == "Collector")
                     {

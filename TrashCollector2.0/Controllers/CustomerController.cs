@@ -76,7 +76,7 @@ namespace TrashCollector2._0.Controllers
             db.CustomerAccount.Add(viewModel.CustomerAccount);
             db.SaveChanges();
 
-            return View(viewModel.CustomerAccount);
+            return RedirectToAction("index");
 
             //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", viewModel.CustomerAccount.CustomerAddressId);
             //return View(viewModel.CustomerAccount);
