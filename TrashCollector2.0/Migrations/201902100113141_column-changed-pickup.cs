@@ -3,7 +3,7 @@ namespace TrashCollector2._0.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class columnchangedpickup : DbMigration
     {
         public override void Up()
         {
@@ -12,12 +12,13 @@ namespace TrashCollector2._0.Migrations
                 c => new
                     {
                         AccountId = c.Int(nullable: false, identity: true),
-                        CustomerId = c.Int(nullable: false),
+                        CustomerName = c.Int(nullable: false),
+                        AspUserId = c.String(),
                         TotalBalance = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.AccountId)
-                .ForeignKey("dbo.CustomerAccounts", t => t.CustomerId, cascadeDelete: true)
-                .Index(t => t.CustomerId);
+                .ForeignKey("dbo.CustomerAccounts", t => t.CustomerName, cascadeDelete: true)
+                .Index(t => t.CustomerName);
             
             CreateTable(
                 "dbo.CustomerAccounts",
@@ -54,6 +55,7 @@ namespace TrashCollector2._0.Migrations
                         TotalPickups = c.Int(nullable: false),
                         MyPickups = c.Int(nullable: false),
                         Pickupcompleted = c.String(),
+                        AspUserId = c.String(),
                     })
                 .PrimaryKey(t => t.CollectorId)
                 .ForeignKey("dbo.Addresses", t => t.CollectorAddressId, cascadeDelete: true)
@@ -66,15 +68,13 @@ namespace TrashCollector2._0.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         PickUpDay = c.String(),
                         SuspendedStartDay = c.String(),
-                        SuspendedEndDate = c.String(),
+                        SuspendedEndDay = c.String(),
+                        ExtraPickUp = c.String(),
                         CustomerID = c.Int(nullable: false),
-                        CollectorId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CollectorAccounts", t => t.CollectorId, cascadeDelete: true)
-                .ForeignKey("dbo.CustomerAccounts", t => t.CustomerID, cascadeDelete: false)
-                .Index(t => t.CustomerID)
-                .Index(t => t.CollectorId);
+                .ForeignKey("dbo.CustomerAccounts", t => t.CustomerID, cascadeDelete: true)
+                .Index(t => t.CustomerID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -154,9 +154,8 @@ namespace TrashCollector2._0.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.PickupDays", "CustomerID", "dbo.CustomerAccounts");
-            DropForeignKey("dbo.PickupDays", "CollectorId", "dbo.CollectorAccounts");
             DropForeignKey("dbo.CollectorAccounts", "CollectorAddressId", "dbo.Addresses");
-            DropForeignKey("dbo.AccountBalances", "CustomerId", "dbo.CustomerAccounts");
+            DropForeignKey("dbo.AccountBalances", "CustomerName", "dbo.CustomerAccounts");
             DropForeignKey("dbo.CustomerAccounts", "CustomerAddressId", "dbo.Addresses");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -164,11 +163,10 @@ namespace TrashCollector2._0.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.PickupDays", new[] { "CollectorId" });
             DropIndex("dbo.PickupDays", new[] { "CustomerID" });
             DropIndex("dbo.CollectorAccounts", new[] { "CollectorAddressId" });
             DropIndex("dbo.CustomerAccounts", new[] { "CustomerAddressId" });
-            DropIndex("dbo.AccountBalances", new[] { "CustomerId" });
+            DropIndex("dbo.AccountBalances", new[] { "CustomerName" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");

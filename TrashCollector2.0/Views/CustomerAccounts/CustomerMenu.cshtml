@@ -1,0 +1,48 @@
+﻿@model TrashCollector2._0.Models.CustomerAccount
+
+@{
+    ViewBag.Title = "Customer Menu";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.ZipCode)
+        </th>
+        <th></th>
+    </tr>
+
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Address.StreetAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Address.City)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Address.ZipCode)
+        </td>
+        <td>
+            @Html.ActionLink("Manage Pickup Days", "ManagePickup", "CustomerAccounts") |
+            @Html.ActionLink("Payment", "MakeAPayment", "CustomerAccounts")
+        </td>
+    </tr>
+
+
+</table>

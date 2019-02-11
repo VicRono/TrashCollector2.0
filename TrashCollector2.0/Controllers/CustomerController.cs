@@ -16,35 +16,21 @@ namespace TrashCollector2._0.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CustomerAccounts
-        public ActionResult Index()
+        public ActionResult CustomerMenu()
         {
             var aspUserId = User.Identity.GetUserId();
             var customer = db.CustomerAccount.Where(c => c.AspUserId == aspUserId).SingleOrDefault();
             customer.Address = db.Addresses.Where(c => c.Id == customer.CustomerAddressId).SingleOrDefault();
             //ViewModel viewModel = new ViewModel()
             //{
-            //    CustomerList = new List<CustomerAccount>(),
-            //    AddressList = new List<Address>()
+            //    CustomerAccount = new CustomerAccount(),
+            //    Address = new Address()
             //};
-            //viewModel.CustomerList = db.CustomerAccount.ToList();
-            //viewModel.AddressList = db.Addresses.ToList();
+            //viewModel.CustomerAccount = customer;
+            //viewModel.Address = customer.Address;
             return View(customer);
         }
-
-        // GET: CustomerAccounts/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerAccount customerAccount = db.CustomerAccount.Find(id);
-            if (customerAccount == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerAccount);
-        }
+     
 
         // GET: CustomerAccounts/Create
         public ActionResult Create()
@@ -53,8 +39,8 @@ namespace TrashCollector2._0.Controllers
             {
                 CustomerAccount = new CustomerAccount(),
                 Address = new Address(),
-               
-                
+
+
             };
             return View(Viewmodel);
         }
@@ -76,7 +62,7 @@ namespace TrashCollector2._0.Controllers
             db.CustomerAccount.Add(viewModel.CustomerAccount);
             db.SaveChanges();
 
-            return RedirectToAction("index");
+            return RedirectToAction("CustomerMenu");
 
             //ViewBag.CustomerAddressId = new SelectList(db.Addresses, "Id", "StreetAddress", viewModel.CustomerAccount.CustomerAddressId);
             //return View(viewModel.CustomerAccount);
@@ -85,7 +71,8 @@ namespace TrashCollector2._0.Controllers
         // GET: CustomerAccounts/Edit/5
         public ActionResult ManagePickup()
         {
-            try {
+            try
+            {
                 var userLoggedIn = User.Identity.GetUserId();
                 var customer = db.CustomerAccount.Where(c => c.AspUserId == userLoggedIn).Single();
                 if (customer == null)
@@ -119,7 +106,7 @@ namespace TrashCollector2._0.Controllers
             //return View(pickup);
 
         }
-        
+
         // POST: CustomerAccounts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -130,48 +117,23 @@ namespace TrashCollector2._0.Controllers
             var userLoggedIn = User.Identity.GetUserId();
             var customer = db.CustomerAccount.Where(c => c.AspUserId == userLoggedIn).Single();
             var pickup = db.PickupDay.Where(e => e.CustomerID == customer.CustomerId).Single();
+            db.PickupDay.Add(PickupDay);
 
             pickup.PickUpDay = PickupDay.PickUpDay;
             pickup.SuspendedStartDay = PickupDay.SuspendedStartDay;
-            pickup.SuspendedEndDate = PickupDay.SuspendedEndDate;
+            pickup.SuspendedEndDay = PickupDay.SuspendedEndDay;
             pickup.ExtraPickUp = PickupDay.ExtraPickUp;
             db.SaveChanges();
             return View(PickupDay);
         }
-        
-        // GET: CustomerAccounts/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CustomerAccount customerAccount = db.CustomerAccount.Find(id);
-            if (customerAccount == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerAccount);
-        }
-
-        // POST: CustomerAccounts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CustomerAccount customerAccount = db.CustomerAccount.Find(id);
-            db.CustomerAccount.Remove(customerAccount);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //public ActionResult MakeAPayment()
+        //{
+        //    var aspUserId = User.Identity.GetUserId();
+        //    var balance = db.AccountBalance.Where(b => b.AspUserId.Equals(aspUserId)).FirstOrDefault();
+        //    //balance.TotalBalance = 0;
+        //    db.SaveChanges();
+        //    return View(balance);
+        //}
     }
 }
+

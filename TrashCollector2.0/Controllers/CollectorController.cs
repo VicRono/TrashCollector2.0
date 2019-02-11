@@ -11,38 +11,51 @@ using TrashCollector2._0.Models;
 
 namespace TrashCollector2._0.Controllers
 {
+    //[Authorize(Roles = "Collector")]
     public class CollectorController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: CollectorAccounts
         public ActionResult Index()
         {
-            ViewModel viewModel = new ViewModel()
-            {
-               CustomerList = new List<CustomerAccount>(),
-               AddressList = new List<Address>()
-            };
-            viewModel.CustomerList = db.CustomerAccount.ToList();
-            viewModel.AddressList = db.Addresses.ToList();
-            return View(viewModel);
+            var userid = User.Identity.GetUserId();
+            var dbemployee = db.CollectorAccount.Where(u => u.AspUserId == userid).Single();
+            dbemployee.Address = db.Addresses.Where(s => s.Id == dbemployee.CollectorAddressId).Single();
+            var  matchingZipcodes = db.CustomerAccount.Where(c=>c.Address.ZipCode == dbemployee.Address.ZipCode).ToList();  
+          return View(matchingZipcodes);
 
+        }
+        [HttpPost]
+        public ActionResult Index(string DayOfWeek)
+        {
+            var userid = User.Identity.GetUserId();
+            var dbemployee = db.CollectorAccount.Where(u => u.AspUserId == userid).Single();
+            dbemployee.Address = db.Addresses.Where(s => s.Id == dbemployee.CollectorAddressId).Single();
+            var CurrentDaySelected = db.PickupDay.Include(c => c.CustomerID).Where(e => e.PickUpDay == DayOfWeek).ToList();
+            //Value.DayOfWeek.ToString() == DayOfWeek).ToList();
+            //var customerList = db.PickupDay.Where(c => c == userid).Single();
+            //var customerList = db.PickupDay.Where(l => l.PickUpDay = userid.CurrentDaySelected).Tolist();
+
+            
+            //has to return a list<Customers>
+            return View("DailyPickUps",CurrentDaySelected);
         }
 
         // GET: CollectorAccounts/Details/5
-        public ActionResult Details(int id)
+        public ActionResult MyPickup(int id)
         {
             return View();
         }
 
         // GET: CollectorAccounts/Create
+        [HttpGet]
         public ActionResult Create()
         {
             ViewModel Viewmodel = new ViewModel()
             {
                 CollectorAccount = new CollectorAccount(),
-                Address = new Address(),
-
-
+                Address = new Address()
             };
             return View(Viewmodel);
         }

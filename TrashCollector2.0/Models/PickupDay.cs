@@ -11,18 +11,15 @@ namespace TrashCollector2._0.Models
     {
         [Key]
         public int Id { get; set; }
-        public DateTime? PickUpDay { get; set; }
-        public DateTime? SuspendedStartDay { get; set; }
-        public DateTime? SuspendedEndDate { get; set; }
-        public DateTime? ExtraPickUp { get; set; }
+        public string PickUpDay { get; set; }
+        public string SuspendedStartDay { get; set; }
+        public string SuspendedEndDay { get; set; }
+        public string ExtraPickUp { get; set; }
 
         [ForeignKey("CustomerAccount")]
         public int CustomerID { get; set; }
         public CustomerAccount  CustomerAccount { get; set; }
 
-        [ForeignKey("CollectorAccount")]
-        public int CollectorId { get; set; }
-        public CollectorAccount CollectorAccount { get; set; }
 
     }
 }

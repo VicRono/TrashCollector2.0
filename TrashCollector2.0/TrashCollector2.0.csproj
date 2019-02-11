@@ -203,29 +203,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902072115360_initial.cs" />
-    <Compile Include="Migrations\201902072115360_initial.Designer.cs">
-      <DependentUpon>201902072115360_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902100113141_column-changed-pickup.cs" />
+    <Compile Include="Migrations\201902100113141_column-changed-pickup.Designer.cs">
+      <DependentUpon>201902100113141_column-changed-pickup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902072149501_initial1.cs" />
-    <Compile Include="Migrations\201902072149501_initial1.Designer.cs">
-      <DependentUpon>201902072149501_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902072154366_column-added-pickup.cs" />
-    <Compile Include="Migrations\201902072154366_column-added-pickup.Designer.cs">
-      <DependentUpon>201902072154366_column-added-pickup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902081656330_deleted extra-pickup.cs" />
-    <Compile Include="Migrations\201902081656330_deleted extra-pickup.Designer.cs">
-      <DependentUpon>201902081656330_deleted extra-pickup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902081813356_prop-change.cs" />
-    <Compile Include="Migrations\201902081813356_prop-change.Designer.cs">
-      <DependentUpon>201902081813356_prop-change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902081914429_column-added-collector.cs" />
-    <Compile Include="Migrations\201902081914429_column-added-collector.Designer.cs">
-      <DependentUpon>201902081914429_column-added-collector.cs</DependentUpon>
+    <Compile Include="Migrations\201902111445503_column-changed.cs" />
+    <Compile Include="Migrations\201902111445503_column-changed.Designer.cs">
+      <DependentUpon>201902111445503_column-changed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -303,10 +287,12 @@
     <Content Include="Views\CustomerAccounts\Create.cshtml" />
     <Content Include="Views\CustomerAccounts\Delete.cshtml" />
     <Content Include="Views\CustomerAccounts\Details.cshtml" />
-    <Content Include="Views\CustomerAccounts\Index.cshtml" />
+    <Content Include="Views\CustomerAccounts\CustomerMenu.cshtml" />
     <Content Include="Views\Collector\Index.cshtml" />
     <Content Include="Views\CustomerAccounts\ManagePickup.cshtml" />
     <Content Include="Views\Collector\Create.cshtml" />
+    <Content Include="Views\CustomerAccounts\MakeAPayment.cshtml" />
+    <Content Include="Views\Collector\DailyPickUps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,23 +306,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902072115360_initial.resx">
-      <DependentUpon>201902072115360_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902100113141_column-changed-pickup.resx">
+      <DependentUpon>201902100113141_column-changed-pickup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902072149501_initial1.resx">
-      <DependentUpon>201902072149501_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902072154366_column-added-pickup.resx">
-      <DependentUpon>201902072154366_column-added-pickup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902081656330_deleted extra-pickup.resx">
-      <DependentUpon>201902081656330_deleted extra-pickup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902081813356_prop-change.resx">
-      <DependentUpon>201902081813356_prop-change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902081914429_column-added-collector.resx">
-      <DependentUpon>201902081914429_column-added-collector.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902111445503_column-changed.resx">
+      <DependentUpon>201902111445503_column-changed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TrashCollector2._0.Models.PickupDay>
+
+@{
+    ViewBag.Title = "DailyPickUps";
+}
+
+<h2>DailyPickUps</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerAccount.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuspendedStartDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuspendedEndDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExtraPickUp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAccount.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickUpDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuspendedStartDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuspendedEndDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExtraPickUp)
+        </td>
+    </tr>
+}
+
+</table>
+@Html.ActionLink("Back", "Index")

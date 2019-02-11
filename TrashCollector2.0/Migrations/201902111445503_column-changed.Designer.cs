@@ -7,13 +7,13 @@ namespace TrashCollector2._0.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class deletedextrapickup : IMigrationMetadata
+    public sealed partial class columnchanged : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(deletedextrapickup));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(columnchanged));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902081656330_deleted extra-pickup"; }
+            get { return "201902111445503_column-changed"; }
         }
         
         string IMigrationMetadata.Source

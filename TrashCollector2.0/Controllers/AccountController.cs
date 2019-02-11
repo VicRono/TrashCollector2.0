@@ -12,7 +12,7 @@ using TrashCollector2._0.Models;
 
 namespace TrashCollector2._0.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -82,7 +82,23 @@ namespace TrashCollector2._0.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        if (this.User.IsInRole("Customer"))
+                        {
+                            return RedirectToAction("CustomerMenu");
+
+                        }
+                        else if (this.User.IsInRole("Collector"))
+                        {
+                            return RedirectToAction("Index");
+                        }
+
+                        else
+                        {
+                            return RedirectToLocal(returnUrl);
+
+                        }
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -164,9 +180,13 @@ namespace TrashCollector2._0.Controllers
                     {
                       return  RedirectToAction("Create", "CustomerAccounts");
                     }
-                    if (user.UserRole == "Collector")
+                    else if (user.UserRole == "Collector")
                     {
                       return  RedirectToAction("Create", "Collector");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
                     }
 
                     //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

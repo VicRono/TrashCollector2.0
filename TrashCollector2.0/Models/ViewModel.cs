@@ -17,5 +17,6 @@ namespace TrashCollector2._0.Models
         public List<Address> AddressList { get; set; }
         public List<CollectorAccount> CollectorList { get; set; }
         public List<PickupDay> PickupDayList { get; set; }
+        public List<AccountBalance> AccountBalanceList { get; set; }
     }
 }

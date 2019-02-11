@@ -14,6 +14,7 @@ namespace TrashCollector2._0.Models
         [ForeignKey("CustomerAccount")]
         public int CustomerId { get; set; }
         public CustomerAccount CustomerAccount { get; set; }
+        public string AspUserId { get; set; }
         public double TotalBalance { get; set; }
     }
 }
